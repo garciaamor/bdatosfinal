@@ -70,7 +70,6 @@ public class FrameDatos extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        b_nuevo = new javax.swing.JButton();
         b_actualizar = new javax.swing.JButton();
         b_salir = new javax.swing.JButton();
         t_tit = new javax.swing.JTextField();
@@ -93,13 +92,6 @@ public class FrameDatos extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("INGRESO DE DATOS");
-
-        b_nuevo.setText("NUEVO");
-        b_nuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_nuevoActionPerformed(evt);
-            }
-        });
 
         b_actualizar.setText("ACTUALIZAR");
         b_actualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -200,9 +192,7 @@ public class FrameDatos extends javax.swing.JFrame {
                             .addComponent(b_actualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                             .addComponent(b_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(b_salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b_nuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(b_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -238,8 +228,7 @@ public class FrameDatos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_eliminar)
-                    .addComponent(b_modificar)
-                    .addComponent(b_nuevo))
+                    .addComponent(b_modificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(261, 261, 261))
@@ -248,18 +237,12 @@ public class FrameDatos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void b_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_nuevoActionPerformed
-        t_tit.setText("");
-        t_dir.setText("");
-        t_ano.setText("");
-        t_gen.setText("");
-    }//GEN-LAST:event_b_nuevoActionPerformed
-
     private void b_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_actualizarActionPerformed
         try {
-            PreparedStatement st= con.prepareStatement("UPDATE mi4j SET Titulo='"+t_tit.getText()+"',Director='"+t_dir.getText()+"',Genero='"+t_gen.getText()+"',Año_inicio='"+t_ano.getText()+"' WHERE ID='"+t_id.getText()+"'");
+            PreparedStatement st= con.prepareStatement("UPDATE Peliculas SET Titulo='"+t_tit.getText()+"',Director='"+t_dir.getText()+"',Genero='"+t_gen.getText()+"',Año='"+t_ano.getText()+"' WHERE ID='"+t_id.getText()+"'");
             st.executeUpdate();
             mostrarDatos();
+            System.out.println("Actualizacion completada");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage() );
         }
@@ -272,7 +255,7 @@ public class FrameDatos extends javax.swing.JFrame {
 
     private void b_insertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_insertarActionPerformed
         try{
-            PreparedStatement st = con.prepareStatement("INSER INTO Peliculas (ID,Titulo,Director,Genero, Año)VALUES(?,?,?,?,?)");
+            PreparedStatement st = con.prepareStatement("INSERT INTO Peliculas (ID,Titulo,Director,Genero, Año)VALUES(?,?,?,?,?)");
             st.setInt(1, Integer.parseInt(t_id.getText()));
             st.setString(2, t_tit.getText());
             st.setString(3, t_dir.getText());
@@ -287,7 +270,7 @@ public class FrameDatos extends javax.swing.JFrame {
 
     private void b_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_modificarActionPerformed
         int fila=tabla.getSelectedRow();
-       if(fila<=0){
+       if(fila>=0){
            t_id.setText(tabla.getValueAt(fila,0).toString());
            t_tit.setText(tabla.getValueAt(fila,1).toString());
            t_dir.setText(tabla.getValueAt(fila,2).toString());
@@ -352,7 +335,6 @@ public class FrameDatos extends javax.swing.JFrame {
     private javax.swing.JButton b_eliminar;
     private javax.swing.JButton b_insertar;
     private javax.swing.JButton b_modificar;
-    private javax.swing.JButton b_nuevo;
     private javax.swing.JButton b_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
