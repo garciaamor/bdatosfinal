@@ -4,7 +4,7 @@ package bdatos;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import metodos.ConexionMySQL;
-import metodos.FrameConex;
+import metodos.*;
 
 
 public class BDatos {
@@ -14,7 +14,7 @@ public class BDatos {
         /*ConexionMySQL obx = new ConexionMySQL();
         obx.Conectar();*/
         
-        FrameConex fram = new FrameConex();
+        FrameDatos fram = new FrameDatos();
         fram.setVisible(true);
        
     }
