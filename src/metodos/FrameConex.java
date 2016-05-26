@@ -62,7 +62,6 @@ public class FrameConex extends javax.swing.JFrame {
 
         textoEstado.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         textoEstado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textoEstado.setText("DESCONECTADO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,6 +88,7 @@ public class FrameConex extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

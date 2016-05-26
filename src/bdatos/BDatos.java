@@ -1,9 +1,7 @@
 
 package bdatos;
 
-import java.sql.*;
-import javax.swing.JOptionPane;
-import metodos.ConexionMySQL;
+
 import metodos.*;
 
 
